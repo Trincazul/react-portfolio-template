@@ -1,6 +1,6 @@
 ---
 date: '2022-12-16T11:50:54.000Z'
-title: Amazing Blog
+title: API simples em Flask conectando em um SQLite 
 tagline: Criação de uma APi simples.
 preview: >-
   Este é um exemplo de como é feita a criação de uma API em Flask que faz a conexão diretamente de uma base de dados SQLite .
