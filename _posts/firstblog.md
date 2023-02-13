@@ -1,62 +1,79 @@
 ---
-date: '2022-07-15T11:50:54.000Z'
+date: '2022-12-16T11:50:54.000Z'
 title: Amazing Blog
-tagline: This is a Tagline If you want to add.
+tagline: Criação de uma APi simples.
 preview: >-
-  Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-  Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-  when an unknown printer took a galley of type and scrambled it to make a type
-  specimen book.
+  Este é um exemplo de como é feita a criação de uma API em Flask que faz a conexão diretamente de uma base de dados SQLite .
 image: >-
   https://images.unsplash.com/photo-1656188505561-19f1a1b6cda8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80
 ---
 
-# Heading One
+Para criar uma API que conecte a uma base de dados SQLite e grave dados de nome e idade, você precisará primeiro ter o SQLite instalado em sua máquina. Depois, você pode criar um arquivo .py com o seguinte código:
 
-**Lorem Ipsum** is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+```python
 
-## This is Heading Two
+# Importe o modulo do SQLite
+import sqlite3
 
-Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+# Conectar ao banco de dados (ou criar um novo banco de dados se ele não existir)
+conn = sqlite3.connect('database.db')
 
-### This is Heading Three
+# Criar um cursor para executar comandos SQL
+cursor = conn.cursor()
 
-Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+# Criar uma tabela para armazenar os dados de nome e idade
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS dados (
+        nome TEXT,
+        idade INTEGER
+    )
+''')
 
-#### This is Heading Four With Code Block
+# Função para inserir um novo dado no banco de dados
+def gravar_dado(nome, idade):
+    cursor.execute('''
+        INSERT INTO dados (nome, idade)
+        VALUES (?, ?)
+    ''', (nome, idade))
+    conn.commit()
 
-```jsx
-<code className={className} {...props}>
-  {children}
-</code>
+# Função para recuperar todos os dados do banco de dados
+def obter_dados():
+    cursor.execute('''
+        SELECT * FROM dados
+    ''')
+    return cursor.fetchall()
+
 ```
+Essas funções podem ser usadas para gravar e obter dados da base de dados SQLite. Para criar a API, você pode usar o Flask, uma biblioteca Python para desenvolvimento web. O código abaixo demonstra como criar uma API com duas rotas: uma que permite gravar dados de nome e idade na base de dados e outra que retorna todos os dados gravados.
 
-## BLockquote
+```python
 
-> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+# Importar o Flask
+from flask import Flask
 
-## Ordered List with horizontal line
+# Criar uma instância da classe Flask
+app = Flask(__name__)
 
-1. First item
-2. Second item
-3. Third item
-4. Fourth item
+# Rota para gravar dados
+@app.route('/gravar_dado/<nome>/<idade>')
+def gravar_dado_api(nome, idade):
+    gravar_dado(nome, idade)
+    return 'Dado gravado com sucesso!'
 
----
+# Rota para obter dados
+@app.route('/obter_dados')
+def obter_dados_api():
+    dados = obter_dados()
+    return str(dados)
 
-## Unordered List With Horizontal line
+# Iniciar a aplicação Flask
+if __name__ == '__main__':
+    app.run()
 
-- First item
-- Second item
-- Third item
-- Fourth item
+```
+Depois de criar esse código, você pode executá-lo com o seguinte comando:
 
----
+`python app.py`
 
-## Links
-
-My favorite search engine is [Duck Duck Go](https://duckduckgo.com).
-
-## Images
-
-![An old rock in the desert](https://images.unsplash.com/photo-1654475677192-2d869348bb4c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80)
+A API estará disponível em **http://localhost:5000**,
