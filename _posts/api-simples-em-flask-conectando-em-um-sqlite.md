@@ -1,11 +1,12 @@
 ---
-date: '2022-12-16T11:50:54.000Z'
-title: API simples em Flask conectando em um SQLite 
+date: '2022-12-21T19:36:19.945Z'
+title: API simples em Flask conectando em um SQLite
 tagline: Criação de uma APi simples.
 preview: >-
-  Este é um exemplo de como é feita a criação de uma API em Flask que faz a conexão diretamente de uma base de dados SQLite .
+  Criando uma API que conecte a uma base de dados SQLite e grave
+  dados de nome e idade.
 image: >-
-  https://images.unsplash.com/photo-1656188505561-19f1a1b6cda8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80
+    https://cdn.pixabay.com/photo/2019/06/17/19/48/source-4280758_960_720.jpg
 ---
 
 Para criar uma API que conecte a uma base de dados SQLite e grave dados de nome e idade, você precisará primeiro ter o SQLite instalado em sua máquina. Depois, você pode criar um arquivo .py com o seguinte código:

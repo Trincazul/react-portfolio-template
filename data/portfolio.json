@@ -45,10 +45,10 @@
         },
         {
             "id": "2",
-            "title": "Projeto Teste",
-            "description": "Descrição do segundo projeto que não tem",
-            "imageSrc": "",
-            "url": ""
+            "title": "Repositório NeuralSec",
+            "description": "Projetos Open source da organização ajude a contribuir com alguns projetos",
+            "imageSrc": "https://cdn.pixabay.com/photo/2022/01/30/13/33/github-6980894_960_720.png",
+            "url": "https://github.com/neural-sec"
         }
     ],
     "services": [
@@ -89,7 +89,7 @@
         "education": {
             "universityName": "ETEC",
             "universityDate": "2019-2020",
-            "universityPara": "Falta escrever sobre o curso"
+            "universityPara": "A ETEC (Escola Técnica Estadual) oferece um curso de desenvolvimento de sistemas que tem como objetivo capacitar os alunos para atuarem no mercado de trabalho na área de tecnologia da informação. Durante o curso, os alunos aprendem a desenvolver sistemas utilizando diferentes linguagens de programação, bancos de dados, ferramentas de desenvolvimento e técnicas de programação. Além disso, o curso também aborda temas como gestão de projetos, segurança da informação, desenvolvimento web, mobile e desktop, entre outros. A formação técnica em desenvolvimento de sistemas da ETEC é reconhecida e valorizada pelo mercado de trabalho, proporcionando aos alunos diversas oportunidades de emprego em empresas de diferentes segmentos."
         },
         "languages": [
             "Python",
@@ -97,12 +97,12 @@
             "SQL"
         ],
         "frameworks": [
-            "Flask",
-            "Pandas"
+            "Flask"
         ],
         "others": [
             "Google Cloud",
-            "Apache Airflow"
+            "Apache Airflow",
+            "Docker"
         ]
     }
 }
